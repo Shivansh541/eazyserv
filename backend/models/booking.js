@@ -1,25 +1,8 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
+
 const bookingSchema = new mongoose.Schema(
   {
-    // Date when the service will be provided
-    serviceDate: {
-      type: Date,
-      required: true,
-    },
-
-    
-    time: {
-      type: String,
-      required: true,
-    },
-
-    paymentMode: {
-      type: String,
-      enum: ["Cash", "UPI", "Card", "Online", "Wallet"],
-      required: true,
-    },
-
    
     bookingId: {
       type: String,
@@ -27,13 +10,46 @@ const bookingSchema = new mongoose.Schema(
       unique: true,
     },
 
+  
+    customerId: {
+      type: Schema.Types.ObjectId,
+      ref: "User",   
+      required: true,
+    },
 
-    address: {
+    
+    workerId: {
+      type: Schema.Types.ObjectId,
+      ref: "Worker", // worker model
+      required: true,
+    },
+
+  
+    serviceDate: {
+      type: Date,
+      required: true,
+    },
+
+   
+    time: {
       type: String,
       required: true,
     },
 
    
+    address: {
+      type: String,
+      required: true,
+    },
+
+  
+    paymentMode: {
+      type: String,
+      enum: ["Cash", "UPI", "Card", "Online", "Wallet"],
+      required: true,
+    },
+
+ 
     totalAmount: {
       type: Number,
       required: true,
@@ -49,19 +65,69 @@ const bookingSchema = new mongoose.Schema(
       required: true,
     },
 
+
     status: {
       type: String,
-      enum: ["Pending", "Completed", "Cancelled"],
+      enum: [
+        "Pending",
+        "Accepted",
+        "OnTheWay",
+        "InProgress",
+        "Completed",
+        "Cancelled",
+        "Rejected",
+        "Refunded",
+      ],
       default: "Pending",
     },
 
-  
+    
+    serviceCategory: {
+      type: String, 
+      required: true,
+    },
+
+    serviceName: {
+      type: String, 
+      required: true,
+    },
+
+    estimatedTime: {
+      type: String, 
+    },
+
+    notes: {
+      type: String,
+      default: "",
+    },
+
+    paymentStatus: {
+      type: String,
+      enum: ["Pending", "Paid", "Failed", "Refunded"],
+      default: "Pending",
+    },
+
+   
+    serviceOTP: {
+      type: String, 
+    },
+
+   
+    rating: {
+      type: Number,
+      min: 1,
+      max: 5,
+    },
+
+
+    review: {
+      type: String,
+    },
   },
   {
-    timestamps: true, 
+    timestamps: true,
   }
 );
 
 const Booking = mongoose.model("Booking", bookingSchema);
-
-export default Booking;
+module.exports = Booking;
