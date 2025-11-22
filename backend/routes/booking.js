@@ -11,9 +11,7 @@ const JWT_SECRET = "JSONWebTokenSecretKey";
 const Booking = require("../models/booking");
 
 
-// =============================
-// 📌 POST: Create a New Booking
-// =============================
+
 router.post(
   "/add",
   [
@@ -74,9 +72,7 @@ router.post(
   }
 );
 
-// =============================
-// 📌 PUT: Update Booking by ID
-// =============================
+
 router.put(
   "/update/:id",
   [
@@ -121,9 +117,7 @@ router.put(
   }
 );
 
-// =============================
-// 📌 GET: Get a Booking by ID
-// =============================
+
 router.get("/:id", async (req, res) => {
   try {
     const booking = await Booking.findById(req.params.id)
@@ -141,9 +135,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// =============================
-// 📌 GET: Get All Bookings
-// =============================
+
 router.get("/", async (req, res) => {
   try {
     const bookings = await Booking.find()
@@ -158,9 +150,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// =============================
-// 📌 GET: Get Bookings by Customer ID
-// =============================
+
 router.get("/customer/:customerId", async (req, res) => {
   try {
     const bookings = await Booking.find({
@@ -174,9 +164,6 @@ router.get("/customer/:customerId", async (req, res) => {
   }
 });
 
-// =============================
-// 📌 GET: Get Bookings by Worker ID
-// =============================
 router.get("/worker/:workerId", async (req, res) => {
   try {
     const bookings = await Booking.find({
@@ -190,9 +177,7 @@ router.get("/worker/:workerId", async (req, res) => {
   }
 });
 
-// =============================
-// 📌 PUT: Cancel a Booking (Update status to "Cancelled")
-// =============================
+
 router.put("/cancel/:id", async (req, res) => {
   try {
     const booking = await Booking.findByIdAndUpdate(

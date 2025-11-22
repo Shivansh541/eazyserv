@@ -1,97 +1,70 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const bookingSchema = new mongoose.Schema(
+const bookingSchema = new Schema(
   {
-   
+    // Unique booking ID
     bookingId: {
       type: String,
       required: true,
       unique: true,
     },
 
-  
+    // Customer
     customerId: {
       type: Schema.Types.ObjectId,
-      ref: "User",   
+      ref: "User",
       required: true,
     },
 
-    
+    // Worker
     workerId: {
       type: Schema.Types.ObjectId,
-      ref: "Worker", // worker model
+      ref: "User", // same user model but with role "worker"
       required: true,
     },
 
-  
+    // Service Category & Name
+    serviceCategory: {
+      type: String,
+      required: true,
+    },
+
+    serviceName: {
+      type: String,
+      required: true,
+    },
+
+    // Date + Time
     serviceDate: {
       type: Date,
       required: true,
     },
 
-   
     time: {
       type: String,
       required: true,
     },
 
-   
-    address: {
-const BookingSchema = new Schema(
-  {
-    customerId:{
-      type: Schema.Types.ObjectId,
-      ref:"user",
-      required: true
-    },
-
-    workerId:{
-      type: Schema.Types.ObjectId,
-      ref: "user",
-      required: true
-    },
-    service:{
-      type: String,
-      required: true
-    },
-
-    date: {
-      type: Date,
-      required: true,
-    },
-
-    time: {
-      type: String,
-      required: true,
-    },
-
+    // Address
     address: {
       type: String,
       required: true,
     },
-    
-    status: {
+
+    // Payment
+    paymentMode: {
       type: String,
-      enum: ["Pending", "Completed", "Cancelled"],
+      enum: ["Cash", "UPI", "Card", "Online", "Wallet"],
+      required: true,
+    },
+
+    paymentStatus: {
+      type: String,
+      enum: ["Pending", "Paid", "Failed", "Refunded"],
       default: "Pending",
     },
 
-    paymentMode: {
-      type: String,
-      enum: ["Cash", "UPI", "Card", "Online", "Wallet"],
-      required: true,
-    },
-
-  
-    paymentMode: {
-      type: String,
-      enum: ["Cash", "UPI", "Card", "Online", "Wallet"],
-      required: true,
-    },
-
- 
-    
     totalAmount: {
       type: Number,
       required: true,
@@ -107,7 +80,7 @@ const BookingSchema = new Schema(
       required: true,
     },
 
-
+    // Booking Status Flow
     status: {
       type: String,
       enum: [
@@ -123,19 +96,8 @@ const BookingSchema = new Schema(
       default: "Pending",
     },
 
-    
-    serviceCategory: {
-      type: String, 
-      required: true,
-    },
-
-    serviceName: {
-      type: String, 
-      required: true,
-    },
-
     estimatedTime: {
-      type: String, 
+      type: String,
     },
 
     notes: {
@@ -143,34 +105,23 @@ const BookingSchema = new Schema(
       default: "",
     },
 
-    paymentStatus: {
-      type: String,
-      enum: ["Pending", "Paid", "Failed", "Refunded"],
-      default: "Pending",
-    },
-
-   
+    // OTP verification
     serviceOTP: {
-      type: String, 
+      type: String,
     },
 
-   
+    // Rating / Review
     rating: {
       type: Number,
       min: 1,
       max: 5,
     },
 
-
     review: {
       type: String,
     },
   },
-  {
-    timestamps: true,
-  }
+  { timestamps: true }
 );
 
-const Booking = mongoose.model("Booking", bookingSchema);
-module.exports = Booking;
-module.exports = mongoose.model("booking", BookingSchema);
+module.exports = mongoose.model("Booking", bookingSchema);
