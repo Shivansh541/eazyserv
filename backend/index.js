@@ -17,6 +17,7 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 app.use('/api/auth',require('./routes/auth'))
+app.use('/api/booking',require('./routes/booking'))
 app.use('/api/review', require('./routes/review'))
 app.use('/api/notification', require('./routes/notification'))
 

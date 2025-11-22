@@ -1,24 +1,42 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
-const BookingSchema = new Schema(
+
+const bookingSchema = new Schema(
   {
-    customerId:{
-      type: Schema.Types.ObjectId,
-      ref:"user",
-      required: true
-    },
-
-    workerId:{
-      type: Schema.Types.ObjectId,
-      ref: "user",
-      required: true
-    },
-    service:{
+    // Unique booking ID
+    bookingId: {
       type: String,
-      required: true
+      required: true,
+      unique: true,
     },
 
-    date: {
+    // Customer
+    customerId: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+
+    // Worker
+    workerId: {
+      type: Schema.Types.ObjectId,
+      ref: "User", // same user model but with role "worker"
+      required: true,
+    },
+
+    // Service Category & Name
+    serviceCategory: {
+      type: String,
+      required: true,
+    },
+
+    serviceName: {
+      type: String,
+      required: true,
+    },
+
+    // Date + Time
+    serviceDate: {
       type: Date,
       required: true,
     },
@@ -28,23 +46,25 @@ const BookingSchema = new Schema(
       required: true,
     },
 
+    // Address
     address: {
       type: String,
       required: true,
     },
-    
-    status: {
-      type: String,
-      enum: ["Pending", "Completed", "Cancelled"],
-      default: "Pending",
-    },
 
+    // Payment
     paymentMode: {
       type: String,
       enum: ["Cash", "UPI", "Card", "Online", "Wallet"],
       required: true,
     },
-    
+
+    paymentStatus: {
+      type: String,
+      enum: ["Pending", "Paid", "Failed", "Refunded"],
+      default: "Pending",
+    },
+
     totalAmount: {
       type: Number,
       required: true,
@@ -59,10 +79,49 @@ const BookingSchema = new Schema(
       type: Number,
       required: true,
     },
+
+    // Booking Status Flow
+    status: {
+      type: String,
+      enum: [
+        "Pending",
+        "Accepted",
+        "OnTheWay",
+        "InProgress",
+        "Completed",
+        "Cancelled",
+        "Rejected",
+        "Refunded",
+      ],
+      default: "Pending",
+    },
+
+    estimatedTime: {
+      type: String,
+    },
+
+    notes: {
+      type: String,
+      default: "",
+    },
+
+    // OTP verification
+    serviceOTP: {
+      type: String,
+    },
+
+    // Rating / Review
+    rating: {
+      type: Number,
+      min: 1,
+      max: 5,
+    },
+
+    review: {
+      type: String,
+    },
   },
-  {
-    timestamps: true, 
-  }
+  { timestamps: true }
 );
 
-module.exports = mongoose.model("booking", BookingSchema);
+module.exports = mongoose.model("Booking", bookingSchema);
