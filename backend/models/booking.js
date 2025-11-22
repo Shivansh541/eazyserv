@@ -38,7 +38,48 @@ const bookingSchema = new mongoose.Schema(
 
    
     address: {
+const BookingSchema = new Schema(
+  {
+    customerId:{
+      type: Schema.Types.ObjectId,
+      ref:"user",
+      required: true
+    },
+
+    workerId:{
+      type: Schema.Types.ObjectId,
+      ref: "user",
+      required: true
+    },
+    service:{
       type: String,
+      required: true
+    },
+
+    date: {
+      type: Date,
+      required: true,
+    },
+
+    time: {
+      type: String,
+      required: true,
+    },
+
+    address: {
+      type: String,
+      required: true,
+    },
+    
+    status: {
+      type: String,
+      enum: ["Pending", "Completed", "Cancelled"],
+      default: "Pending",
+    },
+
+    paymentMode: {
+      type: String,
+      enum: ["Cash", "UPI", "Card", "Online", "Wallet"],
       required: true,
     },
 
@@ -50,6 +91,7 @@ const bookingSchema = new mongoose.Schema(
     },
 
  
+    
     totalAmount: {
       type: Number,
       required: true,
@@ -131,3 +173,4 @@ const bookingSchema = new mongoose.Schema(
 
 const Booking = mongoose.model("Booking", bookingSchema);
 module.exports = Booking;
+module.exports = mongoose.model("booking", BookingSchema);
