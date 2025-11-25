@@ -19,6 +19,7 @@ app.get('/', (req, res) => {
 app.use('/api/auth',require('./routes/auth'))
 app.use('/api/review', require('./routes/review'))
 app.use('/api/notification', require('./routes/notification'))
+app.use('/api/booking', require('./routes/booking'))
 
 app.listen(port, () => {
   console.log(`Eazyserv app listening on http://localhost:${port}`)
