@@ -5,201 +5,125 @@ const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-const JWT_SECRET = "JSONWebTokenSecretKey";
-
-
 const Booking = require("../models/booking");
+const JWT_SECRET = "JSONWebTokenSecretKey";
 
 
 
 router.post(
-  "/add",
+  "/create",
+  fetchUser, 
   [
-    body("bookingId").notEmpty().withMessage("bookingId is required"),
-
-    body("customerId").notEmpty().withMessage("customerId is required"),
-
-    body("workerId").notEmpty().withMessage("workerId is required"),
-
-    body("serviceDate")
-      .notEmpty()
-      .withMessage("Service date is required")
-      .isISO8601()
-      .withMessage("Enter a valid date"),
-
-    body("time").notEmpty().withMessage("Time is required"),
-
+    body("workerId").notEmpty(),
+    body("serviceCategory").notEmpty(),
+    body("serviceName").notEmpty(),
+    body("serviceDate").notEmpty(),
+    body("time").notEmpty(),
+    body("address").notEmpty(),
     body("paymentMode")
-      .isIn(["Cash", "UPI", "Card", "Online", "Wallet"])
-      .withMessage("Invalid payment mode"),
-
-    body("address").notEmpty().withMessage("Address is required"),
-
-    body("totalAmount")
-      .isNumeric()
-      .withMessage("Total amount must be numeric"),
-
-    body("finalPaid")
-      .isNumeric()
-      .withMessage("Final paid must be numeric"),
-
-    body("serviceCategory").notEmpty().withMessage("Service category required"),
-
-    body("serviceName").notEmpty().withMessage("Service name required"),
+      .isIn(["Cash", "UPI", "Card", "Online", "Wallet"]),
+    body("totalAmount").isNumeric(),
+    body("finalPaid").isNumeric(),
   ],
   async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-
     try {
-      const booking = new Booking(req.body);
-      const savedBooking = await booking.save();
+      const errors = validationResult(req);
+      if (!errors.isEmpty())
+        return res.status(400).json({ errors: errors.array() });
 
-      return res.json({
-        success: true,
-        message: "Booking created successfully",
-        data: savedBooking,
-      });
+      let data = req.body;
+
+     
+      data.customerId = req.user.id;
+
+    
+      data.bookingId = "BKG-" + Date.now();
+
+      const booking = new Booking(data);
+      await booking.save();
+
+      res.json({ success: true, booking });
     } catch (error) {
-      console.error("Error:", error);
-      return res.status(500).json({
-        success: false,
-        error: "Internal server error",
-      });
+      res.status(500).send({ error: error.message });
     }
   }
 );
 
+
+
+
+
+
+router.put("/cancel/:id", fetchUser, async (req, res) => {
+  try {
+    const booking = await Booking.findOne({
+      _id: req.params.id,
+      $or: [
+        { customerId: req.user.id },
+        { workerId: req.user.id }
+      ]
+    });
+
+    if (!booking)
+      return res.status(404).json({ message: "Not allowed or booking not found" });
+
+    booking.status = "Cancelled";
+    await booking.save();
+
+    res.json({ success: true, message: "Booking cancelled", booking });
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
+});
 
 router.put(
-  "/update/:id",
+  "/review/:id",
+  fetchUser,
   [
-    body("status")
-      .optional()
-      .isIn([
-        "Pending",
-        "Accepted",
-        "OnTheWay",
-        "InProgress",
-        "Completed",
-        "Cancelled",
-        "Rejected",
-        "Refunded",
-      ])
-      .withMessage("Invalid status value"),
+    body("rating").optional().isInt({ min: 1, max: 5 }),
+    body("review").optional().isString()
   ],
   async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-
     try {
-      const updated = await Booking.findByIdAndUpdate(req.params.id, req.body, {
-        new: true,
+      const booking = await Booking.findOne({
+        _id: req.params.id,
+        $or: [
+          { customerId: req.user.id },
+          { workerId: req.user.id }
+        ]
       });
 
-      if (!updated) {
-        return res.status(404).json({ error: "Booking not found" });
-      }
+      if (!booking)
+        return res.status(403).json({ message: "You cannot review this booking" });
 
-      res.json({
-        success: true,
-        message: "Booking updated",
-        data: updated,
-      });
+      booking.rating = req.body.rating;
+      booking.review = req.body.review;
+
+      await booking.save();
+
+      res.json({ success: true, message: "Review added", booking });
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: "Internal server error" });
+      res.status(500).send({ error: error.message });
     }
   }
 );
 
-
-router.get("/:id", async (req, res) => {
+router.get("/customer/:customerId", fetchUser, async (req, res) => {
   try {
-    const booking = await Booking.findById(req.params.id)
-      .populate("customerId")
-      .populate("workerId");
-
-    if (!booking) {
-      return res.status(404).json({ error: "Booking not found" });
-    }
-
-    res.json({ success: true, data: booking });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Internal server error" });
+    const bookings = await Booking.find({ customerId: req.params.customerId });
+    res.json({ success: true, bookings });
+  } catch (error) {
+    res.status(500).send({ error: error.message });
   }
 });
 
-
-router.get("/", async (req, res) => {
+router.get("/worker/:workerId", fetchUser, async (req, res) => {
   try {
-    const bookings = await Booking.find()
-      .populate("customerId")
-      .populate("workerId")
-      .sort({ createdAt: -1 });
-
-    res.json({ success: true, data: bookings });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Internal server error" });
+    const bookings = await Booking.find({ workerId: req.params.workerId });
+    res.json({ success: true, bookings });
+  } catch (error) {
+    res.status(500).send({ error: error.message });
   }
 });
-
-
-router.get("/customer/:customerId", async (req, res) => {
-  try {
-    const bookings = await Booking.find({
-      customerId: req.params.customerId,
-    });
-
-    res.json({ success: true, data: bookings });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Internal server error" });
-  }
-});
-
-router.get("/worker/:workerId", async (req, res) => {
-  try {
-    const bookings = await Booking.find({
-      workerId: req.params.workerId,
-    });
-
-    res.json({ success: true, data: bookings });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Internal server error" });
-  }
-});
-
-
-router.put("/cancel/:id", async (req, res) => {
-  try {
-    const booking = await Booking.findByIdAndUpdate(
-      req.params.id,
-      { status: "Cancelled" },
-      { new: true }
-    );
-
-    if (!booking) {
-      return res.status(404).json({ error: "Booking not found" });
-    }
-
-    res.json({
-      success: true,
-      message: "Booking cancelled",
-      data: booking,
-    });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Internal server error" });
-  }
-});
-
 
 module.exports = router;

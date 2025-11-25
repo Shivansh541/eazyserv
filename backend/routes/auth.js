@@ -95,7 +95,7 @@ router.post(
                 customerInfo: role === "customer" ? customerInfo : undefined,
             });
             data = {
-                user: {
+                user: { 
                     id: user.id,
                 },
             };
@@ -152,7 +152,7 @@ router.post('/getuser', fetchuser, async(req,res)=>{
     try{
         userId=req.user.id
         const user=await User.findById(userId).select('-password')
-        res.send(user)
+        res.send(user)   
     } catch(error){
         console.log(error.message)
         return res.status(500).send("Internal Server Error")
