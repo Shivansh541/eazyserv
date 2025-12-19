@@ -13,6 +13,7 @@ const BookingSchema = new Schema(
       ref: "user",
       required: true
     },
+    
     service:{
       type: String,
       required: true
@@ -22,12 +23,7 @@ const BookingSchema = new Schema(
       type: Date,
       required: true,
     },
-
-    time: {
-      type: String,
-      required: true,
-    },
-
+    
     address: {
       type: String,
       required: true,

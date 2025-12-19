@@ -1,0 +1,151 @@
+.home{
+    background: #f9fafb;
+}
+/* Hero Section */
+.homeHero{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: calc(100vh - 72px);
+}
+.leftHero{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 64px;
+    gap: 20px;
+}
+.heroHead{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.heroHead h3{
+    font-size: 36px;
+    font-weight: bold;
+    color: #111827;
+}    
+.heroHead p{
+    font-size: 20px;
+    color: #374151;
+} 
+.heroBtns{
+    display: flex;
+    gap: 8px;
+}
+.heroBtns button{
+    padding: 12px 24px;
+    border-radius: 8px;
+}
+.heroSearchBar input{
+    padding: 12px 16px;
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #666;
+    outline: none;
+}
+
+/* Categories Section */
+
+.serviceSection{
+    display: flex;
+    flex-direction: column;
+    padding: 40px 80px;
+    gap: 48px;
+    align-items: center;
+}
+.serviceSection h1{
+    font-size: 32px;
+    font-weight: 600;
+}
+.categoriesGrid{
+    display: flex;
+    gap: 24px;
+}
+.categoryBox{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-bottom: 16px;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    background: white;
+    align-items: center;
+}
+.categoryBox img{
+    width: 256px;
+        border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+}
+.categoryBox .aboutCategory{
+    display: flex;
+    flex-direction: column;
+    padding: 0 16px;
+    gap: 4;
+    text-align: center;
+}
+.categoryBox .aboutCategory h3{
+    font-size: 18px;
+    font-weight: 500;
+    color: #111827;
+}
+.categoryBox .aboutCategory p{
+    font-size: 14px;
+    color: #6b7280;
+}
+.serviceSection a{
+    color: #2563eb;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* How it Works */
+.howItWorks{
+    padding: 40px 80px;
+    gap: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.hiwHead{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+}
+.hiwHead h1{
+    font-size: 32px;
+    font-weight: 600;
+}
+.hiwHead p{
+    font-size: 18px;
+    color: #6b7280;
+}
+.howItWorks .steps{
+    display: flex;
+    gap: 24px;
+}
+.howItWorks .step{
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 250px;
+    background-color: white;
+}
+.howItWorks .step h1{
+    font-size: 96px;
+    font-weight: bold;
+    color: #2563eb;
+}
+.howItWorks .step h3{
+    font-size: 24px;
+    font-weight: 600;
+    color: #111827;
+}
+.howItWorks .step p{
+    color: #6b7280;
+    font-size: 16px;
+}

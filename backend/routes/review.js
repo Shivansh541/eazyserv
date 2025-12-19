@@ -17,7 +17,7 @@ router.post('/addreview',fetchuser, async(req,res)=>{
         if (booking.customerId.toString() !== req.user.id)
             return res.status(403).json({ error: "Not allowed" });
 
-        if (booking.status !== "completed")
+        if (booking.status !== "Completed")
             return res.status(400).json({ error: "You can only review completed bookings" });
 
         const existingReview = await Review.findOne({ bookingId });
@@ -57,9 +57,7 @@ router.post('/addreview',fetchuser, async(req,res)=>{
 
 router.get("/worker/:workerId", async (req, res) => {
   try {
-    const reviews = await Review.find({ worker: req.params.workerId })
-      .populate("customer", "name profilePhoto")
-      .populate("booking", "service date");
+    const reviews = await Review.find({ workerId: req.params.workerId })
 
     res.json(reviews);
   } catch (error) {
