@@ -71,9 +71,13 @@
     background: white;
     align-items: center;
 }
+.categoryBox:hover{
+    transform: translateY(-3px);
+    transition: transform 0.3s ease;
+}
 .categoryBox img{
     width: 256px;
-        border-top-left-radius: 16px;
+    border-top-left-radius: 16px;
     border-top-right-radius: 16px;
 }
 .categoryBox .aboutCategory{
@@ -97,6 +101,9 @@
     font-size: 16px;
     font-weight: bold;
     text-decoration: none;
+}
+.serviceSection a:hover{
+    text-decoration: underline;
 }
 
 /* How it Works */
@@ -148,4 +155,88 @@
 .howItWorks .step p{
     color: #6b7280;
     font-size: 16px;
+}
+
+
+/* Why Choose Us */
+
+.whyChooseUs{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    padding: 40px 80px;
+}
+.whyChooseUs h1{
+    font-size: 32px;
+    font-weight: 600;
+}
+.whyChooseUs .centerLine{
+    position: absolute;
+    z-index: 1;
+    height: 380px;
+    width: 2px;
+    background-color: #2563eb;
+}
+.features{
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    width: 100%;
+}
+.featuresLeft{
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+}
+.featuresRight{
+    display: flex;
+    flex-direction: column;
+}
+.featureBox{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 12px 16px;
+    height: 96px;
+    width: 280px;
+    border-radius: 12px;
+    background-color: white;
+    cursor: pointer;
+}
+.featureBox:hover{
+    transform: translateY(-2px);
+    transition: transform 0.2s ease-in;
+}
+.featureBox h3{
+    color: #111827;
+    font-size: 16px;
+    font-weight: 600;
+}
+.featureBox p{
+    font-size: 13px;
+    color: #6b7280;
+}
+.featureIcons{
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+}
+.featureIcons .box{
+    height: 96px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.featureIcon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    height: 40px;
+    width: 40px;
+    background-color: #007bff;
+    padding: 8px;
+    border-radius: 50%;
 }
