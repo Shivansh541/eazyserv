@@ -53,3 +53,6 @@
 .navlink:hover{
     border-bottom: 2px solid #2563eb;
 }
+.navlink.active{
+    border-bottom: 2px solid #2563eb;
+}

@@ -1,7 +1,8 @@
 import React from 'react'
 import './css/Navbar.css'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 const Navbar = () => {
+    const location = useLocation()
     return (
         <nav className='navbar'>
             <div className="leftNav">
@@ -12,10 +13,10 @@ const Navbar = () => {
             </div>
             <div className="rightNav">
                 <ul className='navlinks'>
-                    <li><Link to="/" className="navlink">Home</Link></li>
-                    <li><Link to="/about" className="navlink">About</Link></li>
-                    <li><Link to="/services" className="navlink">Services</Link></li>
-                    <li><Link to="/contact" className="navlink">Contact</Link></li>
+                    <li><Link to="/" className={`navlink ${location.pathname === '/'?"active":""}`}>Home</Link></li>
+                    <li><Link to="/about" className={`navlink ${location.pathname === '/about'?"active":""}`}>About</Link></li>
+                    <li><Link to="/services" className={`navlink ${location.pathname === '/services'?"active":""}`}>Services</Link></li>
+                    <li><Link to="/contact" className={`navlink ${location.pathname === '/contact'?"active":""}`}>Contact</Link></li>
                 </ul>
                 <button className='primaryBtn'>Login</button>
             </div>

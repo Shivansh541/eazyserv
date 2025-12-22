@@ -58,7 +58,8 @@
     font-weight: 600;
 }
 .categoriesGrid{
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
     gap: 24px;
 }
 .categoryBox{
@@ -76,7 +77,8 @@
     transition: transform 0.3s ease;
 }
 .categoryBox img{
-    width: 256px;
+    height: 100%;
+    width: 100%;
     border-top-left-radius: 16px;
     border-top-right-radius: 16px;
 }
