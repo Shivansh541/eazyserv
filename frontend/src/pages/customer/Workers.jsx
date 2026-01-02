@@ -169,7 +169,7 @@ const Workers = () => {
                             </div>
                             <div className="buttons">
                                 <Link to = {`/worker/${worker.id}`} className='primaryBtn'>View Details</Link>
-                                <button className='secondaryBtn'>Book Now</button>
+                                <Link to={`/book/${worker.id}`} className='secondaryBtn'>Book Now</Link>
                             </div>
                         </div>
                     </div>

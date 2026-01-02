@@ -1,5 +1,6 @@
 import React from "react";
 import "./css/WorkerDetails.css";
+import { Link } from "react-router-dom";
 
 const WorkerDetails = () => {
   return (
@@ -21,7 +22,7 @@ const WorkerDetails = () => {
           <p className="address">📍 Gomti Nagar, Lucknow</p>
         </div>
 
-        <button className="primaryBtn btn">Book Now</button>
+        <Link to={`/book/1`} className="primaryBtn btn">Book Now</Link>
       </section>
 
       {/* ================= ABOUT + SKILLS ================= */}
