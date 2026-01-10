@@ -49,7 +49,7 @@ const Navbar = () => {
                 {role === 'public' ? (
                     <Link to={'/login'} className='primaryBtn'>Login</Link>
                 ) : (
-                    <Link to={'/profile'}><FontAwesomeIcon icon={faUser} /></Link>
+                    <Link className='profileBtn' to={'/profile'}><FontAwesomeIcon icon={faUser} /></Link>
                 )}
             </div>
         </nav>

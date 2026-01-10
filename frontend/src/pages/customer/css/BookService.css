@@ -1,6 +1,6 @@
 .bookServicePage {
   display: grid;
-  padding: 40px;
+  padding: 24px 48px;
   gap: 24px;
   grid-template-columns: 65% 33%;
   background: #f9fafb;

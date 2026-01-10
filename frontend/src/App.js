@@ -21,6 +21,8 @@ import WorkerAllBookings from "./pages/worker/WorkerAllBookings";
 
 import WorkerDetails from './pages/customer/WorkerDetails';
 import BookService from './pages/customer/BookService';
+import MyBookings from './pages/customer/MyBookings';
+import BookingDetails from './pages/customer/BookingDetails';
 
 function App() {
   const dispatch = useDispatch();
@@ -51,6 +53,8 @@ function App() {
         <Route path='/services/:slug' element={<Workers />} />
         <Route path='/worker/:id' element= {<WorkerDetails/>}/>
         <Route path='/book/:workerid' element={<BookService/>}/>
+        <Route path='/mybookings' element={<MyBookings/>}/>
+        <Route path='/mybookings/:bookingid' element={<BookingDetails/>}/>
       </Routes>
       <Footer />
     </BrowserRouter>
