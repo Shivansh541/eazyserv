@@ -8,7 +8,7 @@ const Footer = () => {
         <>
             <section className="footer">
                 <div className="footerAbout">
-                    <h3>EasyServ</h3>
+                    <h3>EazyServ</h3>
                     <p>We provide trusted home services including electricians, plumbing, cleaning, and AC & appliance repair. <br />Our certified professionals ensure quick, reliable, and affordable solutions — all at your doorstep.  </p>
                 </div>
                 <div className="footerServices">
@@ -50,7 +50,7 @@ const Footer = () => {
                 </div>
             </section>
             <section className='copyright'>
-                <p>&copy; 2025 EasyServ. All rights reserved. </p>
+                <p>&copy; 2025 EazyServ. All rights reserved. </p>
             </section>
         </>
     )

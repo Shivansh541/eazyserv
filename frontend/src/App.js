@@ -16,6 +16,9 @@ import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import { fetchServices } from './redux/slices/serviceSlice';
 import Workers from './pages/customer/Workers';
+import WorkerHome from "./pages/worker/WorkerHome";
+import WorkerAllBookings from "./pages/worker/WorkerAllBookings";
+
 import WorkerDetails from './pages/customer/WorkerDetails';
 import BookService from './pages/customer/BookService';
 
@@ -35,6 +38,13 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
         <Route path="/" element={<Home />} />
+        <Route path='/about' element={<About/>}/>
+        <Route path='/services' element={<Services/>}/>
+        <Route path='/contact' element={<Contact/>}/>
+        <Route path='/services/:slug' element={<Workers/>}/>
+        <Route path="/worker/home" element={<WorkerHome />} />
+        <Route path="/worker/bookings" element={<WorkerAllBookings />} />
+
         <Route path='/about' element={<About />} />
         <Route path='/services' element={<Services />} />
         <Route path='/contact' element={<Contact />} />

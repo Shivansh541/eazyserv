@@ -1,0 +1,211 @@
+/* ===== BASE ===== */
+.workerHome {
+  padding: 40px 60px;
+  background: #f9fafb;
+  min-height: 100vh;
+}
+
+/* ===== HERO SECTION ===== */
+.homeHero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 16px;
+  margin-bottom: 40px;
+}
+
+.leftHero {
+  max-width: 50%;
+}
+
+.heroHead h3 {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.heroHead p {
+  color: #6b7280;
+  margin-bottom: 24px;
+}
+
+.heroBtns {
+  display: flex;
+  gap: 16px;
+}
+
+/* ===== BUTTONS ===== */
+.primaryBtn {
+  background: #2563eb;
+  color: #ffffff;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.primaryBtn:hover {
+  background: #1e40af;
+}
+
+.secondaryBtn {
+  border: 1px solid #2563eb;
+  color: #2563eb;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  text-decoration: none;
+  background: transparent;
+}
+
+.secondaryBtn:hover {
+  background: #eff6ff;
+}
+
+/* ===== HERO IMAGE ===== */
+.rightHero img {
+  max-width: 320px;
+  width: 100%;
+}
+
+/* ===== RECENT JOBS ===== */
+.recentBookings {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 16px;
+}
+
+.recentBookings h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* ===== JOB ITEM ===== */
+.bookingItems {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.bookingItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-radius: 12px;
+  background: #f9fafb;
+}
+
+.bookingInfo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.bookingInfo .icon {
+  font-size: 26px;
+}
+
+.bookingInfo h3 {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.bookingInfo p {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* ===== STATUS ===== */
+.statusBox {
+  text-align: right;
+}
+
+.status {
+  display: inline-block;
+  font-size: 13px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  margin-bottom: 6px;
+}
+
+.status.completed {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.status.ongoing {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.status.cancelled {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+/* ===== VIEW LINK ===== */
+.linkBtn {
+  display: inline-block;
+  font-size: 13px;
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.linkBtn:hover {
+  text-decoration: underline;
+}
+
+/* ===== VIEW ALL ===== */
+.viewAllLink {
+  display: block;
+  margin-top: 20px;
+  text-align: right;
+  color: #2563eb;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.viewAllLink:hover {
+  text-decoration: underline;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .homeHero {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .leftHero {
+    max-width: 100%;
+  }
+
+  .rightHero img {
+    max-width: 260px;
+  }
+}
+
+@media (max-width: 600px) {
+  .workerHome {
+    padding: 20px;
+  }
+
+  .heroHead h3 {
+    font-size: 22px;
+  }
+
+  .bookingItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .statusBox {
+    text-align: left;
+  }
+}

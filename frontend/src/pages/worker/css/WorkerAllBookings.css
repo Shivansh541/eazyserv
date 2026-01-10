@@ -1,0 +1,87 @@
+.recentBookings {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 16px;
+}
+
+.recentBookings h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* ===== JOB ITEM ===== */
+.bookingItems {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.bookingItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-radius: 12px;
+  background: #f9fafb;
+}
+
+.bookingInfo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.bookingInfo .icon {
+  font-size: 26px;
+}
+
+.bookingInfo h3 {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.bookingInfo p {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* ===== STATUS ===== */
+.statusBox {
+  text-align: right;
+}
+
+.status {
+  display: inline-block;
+  font-size: 13px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  margin-bottom: 6px;
+}
+
+.status.completed {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.status.ongoing {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.status.cancelled {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+/* ===== VIEW LINK ===== */
+.linkBtn {
+  display: inline-block;
+  font-size: 13px;
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.linkBtn:hover {
+  text-decoration: underline;
+}   
