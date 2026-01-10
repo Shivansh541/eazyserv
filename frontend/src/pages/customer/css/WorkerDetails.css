@@ -1,0 +1,264 @@
+.workerDetailsPage {
+  background: #f9fafb;
+}
+
+/* ================= HERO ================= */
+
+.personalDetails {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding: 32px 64px;
+}
+
+.workerAvatar img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.personalDetails .workerInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.personalDetails .workerInfo h2 {
+  font-size: 22px;
+  line-height: 28px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.personalDetails .rating {
+  font-size: 14px;
+  font-weight: 500;
+  color: #111827;
+}
+
+.personalDetails .rating span {
+  font-weight: 400;
+  color: #6b7280;
+}
+.personalDetails .address{
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+.personalDetails .genderAge{
+  display: flex;
+  font-size: 14px;
+  color: #111827;
+}
+.personalDetails .genderAge .dot{
+  margin: 0 6px;
+}
+.personalDetails .btn{
+    width: 180px;
+    text-align: center;
+    padding: 12px 24px;
+    font-size: 16px;
+}
+/* ================= ABOUT + SKILLS ================= */
+
+/* Section wrapper */
+.professionalDetails {
+  padding: 32px 64px;
+}
+
+/* Section title */
+.professionalDetails h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 24px;
+}
+
+/* Two-column container */
+.workerMidContainer {
+  display: grid;
+  grid-template-columns: 60% 40%;
+  gap: 40px;
+}
+
+/* ---------------- LEFT SIDE ---------------- */
+
+.aboutStats h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 8px;
+}
+
+.aboutStats p {
+  font-size: 14px;
+  line-height: 22px;
+  color: #4b5563;
+  margin-bottom: 20px;
+}
+
+/* Stats row */
+.statsRow {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+/* Individual stat box */
+.statBox {
+  padding: 12px 14px;
+  background: #f9fafb;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.statBox span {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.statBox strong {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* ---------------- RIGHT SIDE (SKILLS) ---------------- */
+
+.skillsSection h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 12px;
+}
+
+/* Skills list */
+.skillsList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Skill item */
+.skillItem {
+  padding: 12px 14px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.skillItem span {
+  font-size: 14px;
+  color: #374151;
+}
+
+.skillItem strong {
+  font-size: 13px;
+  font-weight: 600;
+  color: #2563eb;
+}
+
+.verificationAndPricing{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 32px 64px;
+}
+.verificationAndPricing h2{
+    font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 16px;
+}
+.verificationAndPricing .list{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.verifiedList p{
+  font-size: 14px;
+  font-weight: 500;
+  color: #065f46;
+}
+.pricingList p{
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #6b7280;
+}
+.pricingList p span{
+  font-size: 14px;
+  color: #111827;
+  font-weight: 600;
+}
+/* ================= REVIEWS ================= */
+/* Section wrapper */
+.workerReviews {
+  padding:  32px 64px;
+}
+
+/* Container */
+.reviewsContainer h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 20px;
+}
+
+/* Reviews list */
+.reviewsList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+/* Individual review card */
+.reviewCard {
+  padding: 16px;
+  background: #ffffff;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Header (name + rating) */
+.reviewHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.reviewHeader strong {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* Rating */
+.reviewRating {
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+}
+
+/* Date */
+.reviewDate {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* Review text */
+.reviewCard p {
+  font-size: 14px;
+  line-height: 22px;
+  color: #4b5563;
+}

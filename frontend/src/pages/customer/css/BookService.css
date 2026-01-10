@@ -1,0 +1,347 @@
+.bookServicePage {
+  display: grid;
+  padding: 40px;
+  gap: 24px;
+  grid-template-columns: 65% 33%;
+  background: #f9fafb;
+}
+.leftBookService{
+        display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+.orderSummary {
+  padding: 24px;
+  border-radius: 12px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+.orderSummary .workerInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+.orderSummary .workerInfo h2 {
+  font-size: 22px;
+  line-height: 28px;
+  font-weight: 600;
+  color: #111827;
+  cursor: pointer;
+}
+.orderSummary .serviceCategory{
+    display: flex;
+    gap: 8px;
+}
+.orderSummary .badge{
+    padding: 4px 8px;
+    background: #dbeafe;
+    color: #2563eb;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.orderSummary .serviceCategory{
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
+}
+.orderSummary .rating {
+  font-size: 14px;
+  font-weight: 500;
+  color: #111827;
+}
+
+.orderSummary .rating span {
+  font-weight: 400;
+  color: #6b7280;
+}
+
+.orderSummary .genderAge{
+  display: flex;
+  font-size: 14px;
+  color: #111827;
+}
+.orderSummary .genderAge .dot{
+  margin: 0 6px;
+}
+.customerDetailsForm, .serviceDetailsForm,.paymentModeSection{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 24px;
+    border-radius: 12px;
+    background: white;
+    border: 1px solid #e5e7eb;
+}
+.customerDetailsForm h3, .serviceDetailsForm h3, .paymentModeSection h3{
+    font-size: 18px;
+    font-weight: 600;
+    color: #111827;
+}
+.customerDetailsGrid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;    
+    gap: 12px;
+}
+.customerDetailsGrid div, .serviceDetailsBox>div{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.customerDetailsGrid div label{
+    width: 72px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
+}
+.customerDetailsGrid div input{
+    padding: 6px 10px;
+    border-radius: 4px;
+    width: 70%;
+    border: 1px solid #d7d5db;
+    font-size: 14px;
+    color: #111827;
+    background: #ffffff;
+    outline: none;
+}
+.serviceDetailsBox{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.serviceDetailsBox textarea{
+    width: 100%;
+    height: 96px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    padding: 12px;
+    font-size: 14px;
+    color: #111827;
+    resize: none;
+}
+.serviceDetailsBox div label{
+    width: 135px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
+}
+.serviceDetailsBox .uploadArea{
+    border: 2px dashed #d1d5db;
+    border-radius: 8px;
+    background: #ffffff;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6px 12px;
+}
+.serviceDetailsBox .uploadLabel{
+    font-size: 14px;
+    font-weight: 500;
+    color: #2563eb;
+}
+.imagePreviewList{
+    display: flex;
+    gap: 8px;
+    margin-left: 56px;
+}
+.imagePreviewList .imagePreview{
+    position: relative;
+}
+.imagePreviewList .imagePreview span{
+position: absolute;
+    top: -2px;
+    right: -2px;
+    background: white;
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.serviceDetailsBox .imagePreview img{
+    width: 64px;
+    height: 64px;
+    border-radius: 8px;
+}
+.serviceDetailsBox select, .serviceDetailsBox input{
+    width: 50%;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    font-size: 14px;
+    color: #111827;
+    outline: none;
+}
+
+.paymentOptions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.paymentOption {
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid #E5E7EB;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    background: white;
+}
+
+/* Selected */
+.paymentOption.selected {
+    border-color: #2563EB;
+    background-color: #EFF6FF;
+}
+
+/* Left Side */
+.paymentLeft {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Radio */
+.paymentRadio {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid #2563EB;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.paymentOption.selected .paymentRadio::after {
+    content: "";
+    width: 8px;
+    height: 8px;
+    background-color: #2563EB;
+    border-radius: 50%;
+}
+
+/* Info */
+.paymentInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.paymentInfo h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #111827;
+}
+
+.paymentInfo p {
+    font-size: 13px;
+    color: #6B7280;
+}
+
+/* Badge */
+.paymentBadge {
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 999px;
+    background-color: #DBEAFE;
+    color: #2563EB;
+}
+
+/* Info Note */
+.paymentNote {
+    font-size: 12px;
+    color: #6B7280;
+    background-color: #F9FAFB;
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+/* Wrapper for Sticky Behavior */
+.priceBreakdownWrapper {
+    position: sticky;
+    top: 40px;
+    width: 100%;
+}
+
+/* Card */
+.priceBreakdownCard {
+    padding: 24px;
+    background: white;
+    border: 1px solid #E5E7EB;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Header */
+.priceHeader h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #111827;
+}
+
+/* Rows */
+.priceRows {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.priceRow {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #374151;
+}
+
+/* Divider */
+.priceDivider {
+    height: 1px;
+    background-color: #E5E7EB;
+}
+
+/* Total */
+.priceTotal {
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    font-weight: 600;
+    color: #111827;
+}
+
+/* Note */
+.priceNote {
+    font-size: 12px;
+    color: #6B7280;
+    line-height: 1.4;
+}
+
+/* Confirm Button */
+.confirmBookingBtn {
+    margin-top: 8px;
+    padding: 14px;
+    border-radius: 8px;
+    border: none;
+    background-color: #2563EB;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.confirmBookingBtn:hover {
+    background-color: #1E40AF;
+}
+
+

@@ -1,7 +1,7 @@
 import {
-BrowserRouter,
-Route,
-Routes
+  BrowserRouter,
+  Route,
+  Routes
 } from 'react-router-dom'
 import Home from './pages/Home'
 import About from './pages/About';
@@ -19,9 +19,11 @@ import Workers from './pages/customer/Workers';
 import WorkerHome from "./pages/worker/WorkerHome";
 import WorkerAllBookings from "./pages/worker/WorkerAllBookings";
 
+import WorkerDetails from './pages/customer/WorkerDetails';
+import BookService from './pages/customer/BookService';
 
 function App() {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -33,8 +35,8 @@ function App() {
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path='/login' element={<Login/>}/>
-        <Route path='/signup' element={<Signup/>}/>
+        <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<Signup />} />
         <Route path="/" element={<Home />} />
         <Route path='/about' element={<About/>}/>
         <Route path='/services' element={<Services/>}/>
@@ -43,8 +45,14 @@ function App() {
         <Route path="/worker/home" element={<WorkerHome />} />
         <Route path="/worker/bookings" element={<WorkerAllBookings />} />
 
+        <Route path='/about' element={<About />} />
+        <Route path='/services' element={<Services />} />
+        <Route path='/contact' element={<Contact />} />
+        <Route path='/services/:slug' element={<Workers />} />
+        <Route path='/worker/:id' element= {<WorkerDetails/>}/>
+        <Route path='/book/:workerid' element={<BookService/>}/>
       </Routes>
-      <Footer/>
+      <Footer />
     </BrowserRouter>
   );
 }
