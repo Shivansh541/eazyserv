@@ -1,0 +1,134 @@
+.workerJobsPage {
+  padding: 20px 0;
+}
+
+/* prevent customer css interference */
+.workerJobsPage * {
+  box-sizing: border-box;
+}
+
+/* Filters */
+.workerJobsPage .filters {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.workerJobsPage .filterBtn {
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.workerJobsPage .filterBtn.active {
+  background: #2563eb;
+  color: #fff;
+  border-color: #2563eb;
+}
+
+/* ============================= */
+/* Job Card                      */
+/* ============================= */
+
+.workerJobsPage .workerJobCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  padding: 18px 22px;
+  border-radius: 14px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+}
+
+/* Left side */
+.workerJobsPage .workerJobLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.workerJobsPage .clientName {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  color: #111827;
+}
+
+.workerJobsPage .jobMeta {
+  font-size: 14px;
+  color: #4b5563;
+}
+
+.workerJobsPage .jobAddress {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* Right side */
+.workerJobsPage .workerJobRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+/* Status badges */
+.workerJobsPage .statusBadge {
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.workerJobsPage .statusBadge.upcoming {
+  background: #e0edff;
+  color: #2563eb;
+}
+
+.workerJobsPage .statusBadge.completed {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.workerJobsPage .statusBadge.cancelled {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.workerJobsPage .statusBadge.in-progress {
+  background: #fff7ed;
+  color: #c2410c;
+}
+
+/* View details */
+.workerJobsPage .detailsLink {
+  font-size: 14px;
+  color: #2563eb;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.workerJobsPage .detailsLink:hover {
+  text-decoration: underline;
+}
+
+/* Empty State */
+.workerJobsPage .emptyState {
+  text-align: center;
+  padding: 60px 0;
+}
+
+.workerJobsPage .emptyState h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.workerJobsPage .emptyState p {
+  font-size: 14px;
+  color: #6b7280;
+}

@@ -22,6 +22,8 @@ import WorkerDetails from './pages/customer/WorkerDetails';
 import BookService from './pages/customer/BookService';
 import MyBookings from './pages/customer/MyBookings';
 import BookingDetails from './pages/customer/BookingDetails';
+import WorkerAllJob from './pages/worker/WorkerAllJob';
+import WorkerProfile from "./pages/worker/WorkerProfile";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,16 +41,21 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
         <Route path="/" element={<Home />} />
-        <Route path='/about' element={<About/>}/>
-        <Route path='/services' element={<Services/>}/>
-        <Route path='/contact' element={<Contact/>}/>
-        <Route path='/services/:slug' element={<Workers/>}/>
+        <Route path='/about' element={<About />} />
+        <Route path='/services' element={<Services />} />
+        <Route path='/contact' element={<Contact />} />
+        <Route path='/services/:slug' element={<Workers />} />
         <Route path="/worker/home" element={<WorkerHome />} />
         <Route path="/worker/bookings" element={<WorkerAllBookings />} />
-        <Route path='/worker/:id' element= {<WorkerDetails/>}/>
-        <Route path='/book/:workerid' element={<BookService/>}/>
-        <Route path='/mybookings' element={<MyBookings/>}/>
-        <Route path='/mybookings/:bookingid' element={<BookingDetails/>}/>
+        <Route path='/worker/:id' element={<WorkerDetails />} />
+        <Route path='/book/:workerid' element={<BookService />} />
+        <Route path='/mybookings' element={<MyBookings />} />
+        <Route path='/mybookings/:bookingid' element={<BookingDetails />} />
+        <Route path="/myjobs" element={<WorkerAllJob />} />
+
+        <Route path="/profile" element={<WorkerProfile />} />
+
+
       </Routes>
       <Footer />
     </BrowserRouter>
