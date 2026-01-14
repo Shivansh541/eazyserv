@@ -145,39 +145,3 @@
 .workerHome .viewAllLink:hover {
   text-decoration: underline;
 }
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 900px) {
-  .homeHero {
-    flex-direction: column;
-    gap: 30px;
-  }
-
-  .leftHero {
-    max-width: 100%;
-  }
-
-  .rightHero img {
-    max-width: 260px;
-  }
-}
-
-@media (max-width: 600px) {
-  .workerHome {
-    padding: 20px;
-  }
-
-  .heroHead h3 {
-    font-size: 22px;
-  }
-
-  .bookingItem {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-  }
-
-  .statusBox {
-    text-align: left;
-  }
-}
