@@ -1,0 +1,20 @@
+.bookingDetails{
+    background-color: #f9fafb;
+    padding: 40px;
+}
+.serviceDetails .bookingLeft h3{
+    font-size: 18px;
+}
+.serviceDetails .bookingMiddle p{
+    font-size: 14px;
+}
+.bookingDetails .leftDetails{
+    align-items: flex-start;
+}
+.bookingDetails .leftDetails img{
+    height: 100px;
+}
+.bookingDetails .actionsBar{
+    display: flex;
+    gap: 16px;
+}

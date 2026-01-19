@@ -3,24 +3,24 @@ import { Link } from 'react-router-dom'
 import SearchBar from '../../components/SearchBar'
 
 const PublicHome = () => {
-      const categories = [
-    {
-      "name": "Electrician",
-      "desc": "Certified electricians for wiring, fittings, and quick electrical repairs at home."
-    },
-    {
-      "name": "Plumber",
-      "desc": "Expert plumbers for leak repairs, pipe fitting, and bathroom installations."
-    },
-    {
-      "name": "Cleaning",
-      "desc": "Professional home, kitchen, and deep cleaning services for a spotless living space."
-    },
-    {
-      "name": "AC & Appliance Repair",
-      "desc": "Reliable technicians to fix ACs, refrigerators, washing machines, and more."
-    },
-  ]
+    const categories = [
+        {
+            "name": "Electrician",
+            "desc": "Certified electricians for wiring, fittings, and quick electrical repairs at home."
+        },
+        {
+            "name": "Plumber",
+            "desc": "Expert plumbers for leak repairs, pipe fitting, and bathroom installations."
+        },
+        {
+            "name": "Cleaning",
+            "desc": "Professional home, kitchen, and deep cleaning services for a spotless living space."
+        },
+        {
+            "name": "AC & Appliance Repair",
+            "desc": "Reliable technicians to fix ACs, refrigerators, washing machines, and more."
+        },
+    ]
     return (
         <div className='home publicHome'>
             <section className="homeHero">
@@ -33,7 +33,7 @@ const PublicHome = () => {
                         <Link to={'/login'} className="primaryBtn">Book a Service</Link>
                         <Link to={'/signup'} className="secondaryBtn">Become a Provider</Link>
                     </div>
-                    <SearchBar class = {"heroSearchBar"}/>
+                    <SearchBar class={"heroSearchBar"} />
                 </div>
                 <div className="rightHero">
                     <img src="/static/images/hero-right.svg" alt="" />

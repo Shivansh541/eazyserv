@@ -32,30 +32,29 @@
   color: #111827;
 }
 
-.personalDetails .rating {
+.workerDetailsPage .personalDetails .rating {
   font-size: 14px;
   font-weight: 500;
   color: #111827;
 }
 
-.personalDetails .rating span {
+.workerDetailsPage .personalDetails .rating span {
   font-weight: 400;
   color: #6b7280;
 }
-.personalDetails .address{
+.workerDetailsPage .personalDetails .address{
   font-size: 14px;
-  font-weight: 600;
   color: #374151;
 }
-.personalDetails .genderAge{
+.workerDetailsPage .personalDetails .genderAge{
   display: flex;
   font-size: 14px;
   color: #111827;
 }
-.personalDetails .genderAge .dot{
+.workerDetailsPage .personalDetails .genderAge .dot{
   margin: 0 6px;
 }
-.personalDetails .btn{
+.workerDetailsPage .personalDetails .btn{
     width: 180px;
     text-align: center;
     padding: 12px 24px;
@@ -64,12 +63,12 @@
 /* ================= ABOUT + SKILLS ================= */
 
 /* Section wrapper */
-.professionalDetails {
+.workerDetailsPage .professionalDetails {
   padding: 32px 64px;
 }
 
 /* Section title */
-.professionalDetails h2 {
+.workerDetailsPage .professionalDetails h2 {
   font-size: 20px;
   font-weight: 600;
   color: #111827;
@@ -77,7 +76,7 @@
 }
 
 /* Two-column container */
-.workerMidContainer {
+.workerDetailsPage .workerMidContainer {
   display: grid;
   grid-template-columns: 60% 40%;
   gap: 40px;
@@ -85,14 +84,14 @@
 
 /* ---------------- LEFT SIDE ---------------- */
 
-.aboutStats h3 {
+.workerDetailsPage .aboutStats h3 {
   font-size: 16px;
   font-weight: 600;
   color: #111827;
   margin-bottom: 8px;
 }
 
-.aboutStats p {
+.workerDetailsPage .aboutStats p {
   font-size: 14px;
   line-height: 22px;
   color: #4b5563;
@@ -100,14 +99,14 @@
 }
 
 /* Stats row */
-.statsRow {
+.workerDetailsPage .statsRow {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 16px;
 }
 
 /* Individual stat box */
-.statBox {
+.workerDetailsPage .statBox {
   padding: 12px 14px;
   background: #f9fafb;
   border-radius: 10px;
@@ -117,12 +116,12 @@
   gap: 4px;
 }
 
-.statBox span {
+.workerDetailsPage .statBox span {
   font-size: 12px;
   color: #6b7280;
 }
 
-.statBox strong {
+.workerDetailsPage .statBox strong {
   font-size: 14px;
   font-weight: 600;
   color: #111827;
@@ -130,7 +129,7 @@
 
 /* ---------------- RIGHT SIDE (SKILLS) ---------------- */
 
-.skillsSection h3 {
+.workerDetailsPage .skillsSection h3 {
   font-size: 16px;
   font-weight: 600;
   color: #111827;
@@ -138,14 +137,14 @@
 }
 
 /* Skills list */
-.skillsList {
+.workerDetailsPage .skillsList {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
 /* Skill item */
-.skillItem {
+.workerDetailsPage .skillItem {
   padding: 12px 14px;
   background: #f9fafb;
   border: 1px solid #e5e7eb;
@@ -155,42 +154,42 @@
   align-items: center;
 }
 
-.skillItem span {
+.workerDetailsPage .skillItem span {
   font-size: 14px;
   color: #374151;
 }
 
-.skillItem strong {
+.workerDetailsPage .skillItem strong {
   font-size: 13px;
   font-weight: 600;
   color: #2563eb;
 }
 
-.verificationAndPricing{
+.workerDetailsPage .verificationAndPricing{
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding: 32px 64px;
 }
-.verificationAndPricing h2{
+.workerDetailsPage .verificationAndPricing h2,.priceBreakdown h2{
     font-size: 16px;
   font-weight: 600;
   color: #111827;
   margin-bottom: 16px;
 }
-.verificationAndPricing .list{
+.workerDetailsPage .verificationAndPricing .list, .priceBreakdown .list{
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-.verifiedList p{
+.workerDetailsPage .verifiedList p{
   font-size: 14px;
   font-weight: 500;
   color: #065f46;
 }
-.pricingList.list{
+.workerDetailsPage .pricingList.list, .priceBreakdown .pricingList.list{
   gap: 5px;
 }
-.pricingList > p {
+.workerDetailsPage .pricingList > p, .priceBreakdown .pricingList>p {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -198,20 +197,20 @@
   color: #6b7280;
 }
 
-.pricingList > p span {
+.workerDetailsPage .pricingList > p span,.priceBreakdown .pricingList>p span {
   font-size: 14px;
   color: #111827;
   font-weight: 600;
 }
 
-.pricingNote {
+.workerDetailsPage .pricingNote, .priceBreakdown .pricingNote {
   background: #f9fafb;
   padding: 10px;
   border-radius: 8px;
   border-left: 3px solid #2563eb;
 }
 
-.pricingNote p {
+.workerDetailsPage .pricingNote p,.priceBreakdown .pricingNote p {
   font-size: 12.5px;
   color: #374151;
   margin: 4px 0;
@@ -220,12 +219,12 @@
 
 /* ================= REVIEWS ================= */
 /* Section wrapper */
-.workerReviews {
+.workerDetailsPage .workerReviews {
   padding:  32px 64px;
 }
 
 /* Container */
-.reviewsContainer h3 {
+.workerDetailsPage .reviewsContainer h3 {
   font-size: 18px;
   font-weight: 600;
   color: #111827;
@@ -233,14 +232,14 @@
 }
 
 /* Reviews list */
-.reviewsList {
+.workerDetailsPage .reviewsList {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 16px;
 }
 
 /* Individual review card */
-.reviewCard {
+.workerDetailsPage .reviewCard {
   padding: 16px;
   background: #ffffff;
   border-radius: 10px;
@@ -251,33 +250,33 @@
 }
 
 /* Header (name + rating) */
-.reviewHeader {
+.workerDetailsPage .reviewHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.reviewHeader strong {
+.workerDetailsPage .reviewHeader strong {
   font-size: 14px;
   font-weight: 600;
   color: #111827;
 }
 
 /* Rating */
-.reviewRating {
+.workerDetailsPage .reviewRating {
   font-size: 13px;
   font-weight: 500;
   color: #374151;
 }
 
 /* Date */
-.reviewDate {
+.workerDetailsPage .reviewDate {
   font-size: 12px;
   color: #6b7280;
 }
 
 /* Review text */
-.reviewCard p {
+.workerDetailsPage .reviewCard p {
   font-size: 14px;
   line-height: 22px;
   color: #4b5563;

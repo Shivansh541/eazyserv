@@ -8,75 +8,75 @@
     width: 80%;
     border-radius: 24px;
 }
-.recentBookings{
+.customerHome .recentBookings{
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 40px;
     gap: 24px;
 }
-.recentBookings h2{
+.customerHome .recentBookings h2{
     font-size: 32px;
     font-weight: 600;
 }
-.bookingItems{
+.customerHome .bookingItems{
     display: flex;
     flex-direction: column;   
     width: 100%;
 }
-.bookingItem{
+.customerHome .bookingItem{
     display: flex;
     justify-content: space-between;
     padding: 24px;
 
 }
-.bookingInfo{
+.customerHome .bookingInfo{
     display: flex;
     gap: 48px;
 }
-.bookingInfo span{
+.customerHome .bookingInfo span{
     font-size: 48px;
 }
-.bookingInfo div{
+.customerHome .bookingInfo div{
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 10px;
 }
-.bookingInfo div h3{
+.customerHome .bookingInfo div h3{
     font-size: 16px;
     font-weight: bold;
     color: #111827;
 }
-.bookingInfo div p{
+.customerHome .bookingInfo div p{
     font-size: 14px;
     color: #6b7280;
 }
-.statusBox{
+.customerHome .statusBox{
     width: 150px;
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
-.statusBox .status{
+.customerHome .statusBox .status{
     font-size: 16px;
     font-weight: 500;
 }
-.statusBox .status.completed{
+.customerHome .statusBox .status.completed{
     color: #22c55e;
 }
-.statusBox .status.ongoing{
+.customerHome .statusBox .status.ongoing{
     color: #3b82f6;
 }
-.statusBox .status.cancelled{
+.customerHome .statusBox .status.cancelled{
     color: #ef4444;
 }
-.statusBox .linkBtn{
+.customerHome .statusBox .linkBtn{
     text-decoration: none;
         font-size: 16px;
     font-weight: 500;
     color: #2f5dff;
 }
-.statusBox .linkBtn:hover{
+.customerHome .statusBox .linkBtn:hover{
     text-decoration: underline;
 }
