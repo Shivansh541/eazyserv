@@ -14,10 +14,12 @@
   padding: 40px;
   border-radius: 16px;
   margin-bottom: 40px;
+  gap: 40px;
 }
 
+/* ===== LEFT HERO ===== */
 .workerHome .leftHero {
-  max-width: 50%;
+  flex: 1;
 }
 
 .workerHome .heroHead h3 {
@@ -36,11 +38,19 @@
   gap: 16px;
 }
 
+/* ===== HERO IMAGE (FIXED SIZE) ===== */
+.workerHome .rightHero {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
 
-/* ===== HERO IMAGE ===== */
 .workerHome .rightHero img {
-  max-width: 320px;
   width: 100%;
+  max-width: 520px;   /* MATCH CUSTOMER PAGE */
+  height: auto;
+  border-radius: 20px;
+  object-fit: cover;
 }
 
 /* ===== RECENT JOBS ===== */
@@ -144,4 +154,44 @@
 
 .workerHome .viewAllLink:hover {
   text-decoration: underline;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .workerHome .homeHero {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .workerHome .leftHero {
+    width: 100%;
+  }
+
+  .workerHome .rightHero img {
+    max-width: 420px;
+  }
+}
+
+@media (max-width: 600px) {
+  .workerHome {
+    padding: 20px;
+  }
+
+  .workerHome .heroHead h3 {
+    font-size: 22px;
+  }
+
+  .workerHome .bookingItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .workerHome .statusBox {
+    text-align: left;
+  }
+
+  .workerHome .rightHero img {
+    max-width: 100%;
+  }
 }

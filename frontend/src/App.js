@@ -26,6 +26,7 @@ import WorkerAllJob from './pages/worker/WorkerAllJob';
 import Notifications from './components/Notifications';
 import Profile from './pages/Profile';
 
+
 function App() {
   const dispatch = useDispatch();
 
@@ -53,8 +54,14 @@ function App() {
         <Route path='/mybookings' element={<MyBookings />} />
         <Route path='/mybookings/:bookingid' element={<BookingDetails />} />
         <Route path="/myjobs" element={<WorkerAllJob />} />
+<<<<<<< HEAD
+       
+
+        <Route path="/profile" element={<WorkerProfile />} />
+=======
         <Route path='/notifications' element={<Notifications/>}/>
         <Route path="/profile" element={<Profile />} />
+>>>>>>> e3cb74506cc648d3f1f650d7eab3c496b75d6861
 
 
       </Routes>

@@ -18,7 +18,7 @@ const WorkerHome = () => {
           </div>
 
           <div className="heroBtns">
-            <Link to="/jobs" className="primaryBtn">
+            <Link to="/worker/bookings" className="primaryBtn">
               View My Bookings
             </Link>
             <Link to="/myjobs" className="secondaryBtn">
@@ -28,7 +28,7 @@ const WorkerHome = () => {
         </div>
 
         <div className="rightHero">
-          <img src="/static/images/istockphoto-1363376686-612x612.jpg" alt="" />
+         <img src="/static/images/istockphoto-1363376686-612x612.jpg" alt="" />x
         </div>
       </section>
 
@@ -94,7 +94,7 @@ const WorkerHome = () => {
           rel="noopener noreferrer"
           className="viewAllLink"
         >
-          View All Bookings →
+          
         </a>
       </section>
 
