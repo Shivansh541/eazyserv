@@ -4,9 +4,29 @@ const router = express.Router();
 const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const fetchuser = require('../middleware/fetchuser')
-
+const fetchuser = require('../middleware/fetchuser');
+const Otp = require("../models/Otp");
+const nodemailer = require("nodemailer")
 const JWT_SECRET = process.env.JWT_SECRET;
+
+const sendEmail = async (to, subject, text) => {
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+  });
+
+  await transporter.sendMail({
+    from: `"HomeHelp" <${process.env.EMAIL_USER}>`,
+    to,
+    subject,
+    text,
+  });
+};
+
+
 router.post(
     "/signup",
     [
@@ -128,4 +148,99 @@ router.post('/getuser', fetchuser, async (req, res) => {
         return res.status(500).send("Internal Server Error")
     }
 })
+
+router.post("/forgot-password",
+    [
+        body("email").isEmail()
+    ],
+    async (req, res) => {
+        const { email } = req.body;
+
+        try {
+            const user = await User.findOne({ email });
+            if (!user) {
+                return res.json({ success: true });
+            }
+
+            const otp = Math.floor(100000 + Math.random() * 900000).toString();
+
+            await Otp.deleteMany({ email });
+
+            await Otp.create({
+                email,
+                otp,
+                expiresAt: Date.now() + 10 * 60 * 1000, // 10 mins
+            });
+
+            await sendEmail(
+                email,
+                "Password Reset OTP",
+                `Your OTP is ${otp}. It expires in 10 minutes.`
+            );
+
+            res.json({ success: true });
+        } catch (err) {
+            console.error(err);
+            res.status(500).send("Server Error");
+        }
+    }
+);
+
+router.post(
+  "/verify-otp",
+  [
+    body("email").isEmail(),
+    body("otp").isLength({ min: 6, max: 6 }),
+  ],
+  async (req, res) => {
+    const { email, otp } = req.body;
+
+    try {
+      const record = await Otp.findOne({ email, otp });
+
+      if (!record || record.expiresAt < Date.now()) {
+        return res.status(400).json({ error: "Invalid or expired OTP" });
+      }
+
+      res.json({ success: true });
+    } catch (err) {
+      console.error(err);
+      res.status(500).send("Server Error");
+    }
+  }
+);
+router.post(
+  "/reset-password",
+  [
+    body("email").isEmail(),
+    body("password").isLength({ min: 8 }),
+  ],
+  async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+      const otpRecord = await Otp.findOne({ email });
+      if (!otpRecord || otpRecord.expiresAt < Date.now()) {
+        return res.status(400).json({ error: "OTP expired or invalid" });
+      }
+
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(password, salt);
+
+      await User.updateOne(
+        { email },
+        { password: hashedPassword }
+      );
+
+      await Otp.deleteMany({ email });
+
+      res.json({ success: true });
+    } catch (err) {
+      console.error(err);
+      res.status(500).send("Server Error");
+    }
+  }
+);
+
+
 module.exports = router

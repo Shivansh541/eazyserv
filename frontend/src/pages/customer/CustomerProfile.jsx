@@ -1,3 +1,4 @@
+import { useDispatch } from "react-redux";
 import "./css/CustomerProfile.css";
 import {
     FaTrash,
@@ -8,6 +9,7 @@ import {
     FaShieldAlt,
     FaChevronRight,
 } from "react-icons/fa";
+import { logout } from "../../redux/slices/authSlice";
 
 const CustomerProfile = () => {
     const addresses = [
@@ -15,7 +17,7 @@ const CustomerProfile = () => {
         "456 Oak Avenue, Chicago, IL",
         "799 Pine Road, Dallas, TX",
     ];
-
+    const dispatch = useDispatch()
     return (
         <div className="profilePage">
 
@@ -42,7 +44,7 @@ const CustomerProfile = () => {
                     <p className="infoMuted">Age: 32 | Gender: Female</p>
                 </div>
                 <div style={{width:'100%',display:'flex',alignItems:'flex-start',justifyContent:'flex-end'}}>
-                    <button style={{ padding: '12px 24px', fontSize: '16px' }} className="primaryBtn">Logout</button>
+                    <button onClick={()=>dispatch(logout())} style={{ padding: '12px 24px', fontSize: '16px' }} className="primaryBtn">Logout</button>
                 </div>
 
             </div>

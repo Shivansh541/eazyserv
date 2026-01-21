@@ -10,7 +10,7 @@ export const fetchUser = createAsyncThunk(
       const res = await fetch("http://localhost:5000/api/auth/getuser", {
         method: "POST",
         headers: {
-            "Content-Type":"application/json",
+          "Content-Type": "application/json",
           "auth-token": token,
         },
       });
@@ -29,35 +29,41 @@ export const fetchUser = createAsyncThunk(
 );
 
 const authSlice = createSlice({
-    name: "auth",
-    initialState: {
-        token: localStorage.getItem("token") || null,
-        user: null,
-        loading: false,
-        error: null,
+  name: "auth",
+  initialState: {
+    token: localStorage.getItem("token") || null,
+    user: null,
+    isAuthenticated: false,
+    loading: true,
+    error: null,
+  },
+  reducers: {
+    logout: (state) => {
+      state.token = null;
+      state.user = null;
+      state.isAuthenticated = false;
+      localStorage.removeItem("token");
     },
-    reducers: {
-        logout: (state) => {
-            state.token = null;
-            state.user = null;
-            localStorage.removeItem("token");
-        },
+    authResolved: (state) => {
+      state.loading = false;
     },
-    extraReducers: (builder) => {
-        builder
-            .addCase(fetchUser.pending, (state) => {
-                state.loading = true;
-            })
-            .addCase(fetchUser.fulfilled, (state, action) => {
-                state.user = action.payload;
-                state.loading = false;
-            })
-            .addCase(fetchUser.rejected, (state, action) => {
-                state.error = action.payload;
-                state.loading = false;
-                state.user = null;
-            });
-    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchUser.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchUser.fulfilled, (state, action) => {
+        state.user = action.payload;
+        state.isAuthenticated = true;
+        state.loading = false;
+      })
+      .addCase(fetchUser.rejected, (state, action) => {
+        state.error = action.payload;
+        state.loading = false;
+        state.user = null;
+      });
+  },
 })
-export const { logout } = authSlice.actions;
+export const { logout, authResolved } = authSlice.actions;
 export default authSlice.reducer;

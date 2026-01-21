@@ -8,8 +8,11 @@ import {
 } from "react-icons/fa";
 import "./css/WorkerProfile.css";
 import { Link } from "react-router-dom";
+import { logout } from "../../redux/slices/authSlice";
+import { useDispatch } from "react-redux";
 
 const WorkerProfile = () => {
+  const dispatch = useDispatch()
   return (
     <div className="workerProfile">
 
@@ -102,6 +105,9 @@ const WorkerProfile = () => {
           <Link to="/worker/bookings" className="viewAll">
             View All Bookings
           </Link>
+        </div>
+        <div style={{ width: '100%', display: 'flex', alignItems: 'flex-start', justifyContent: 'flex-end' }}>
+          <button onClick={() => dispatch(logout())} style={{ padding: '12px 24px', fontSize: '16px' }} className="primaryBtn">Logout</button>
         </div>
       </div>
     </div>
