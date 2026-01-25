@@ -157,7 +157,7 @@ router.post('/workers/by-service', async (req, res) => {
 
         const workers = await User.find({
             role: 'worker',
-            "workerInfo.skills": service
+            "workerInfo.skills.slug": service
         }).select('-password');
 
         res.json(workers);

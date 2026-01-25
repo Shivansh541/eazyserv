@@ -48,6 +48,7 @@ const UserSchema = new Schema({
       {
         _id: false,
         name: String,
+        slug: String,
         experience: String
       }
     ],

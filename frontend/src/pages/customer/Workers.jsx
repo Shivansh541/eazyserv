@@ -95,8 +95,30 @@ const workersData = [
     },
 ];
 const Workers = () => {
+    const [workers, setWorkers] = useState(null);
     const { slug } = useParams();
 
+    useState(() => {
+        const fetchWorkersByService = async () => {
+            try {
+                const response = await fetch("http://localhost:5000/api/auth/workers/by-service", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ service: slug })
+                })
+
+                const data = await response.json();
+                setWorkers(data);
+                console.log(data)
+            }
+            catch (error) {
+                console.error(error)
+            }
+        }
+        fetchWorkersByService()
+    })
     const formatSlug = (slug) => {
         if (!slug) return "";
 
@@ -108,7 +130,6 @@ const Workers = () => {
             .join(' ');
     };
 
-    const [workers, setWorkers] = useState(workersData);
     const handleSort = (type) => {
         let sorted = [...workers];
 
@@ -151,27 +172,33 @@ const Workers = () => {
                     <option value="ratingLowHigh">Rating (Low → High)</option>
                 </select>
             </div>
-            {workers.map((worker) => (
-                <div key={worker.id} className="workersList">
-                    <div className="workerDetails">
-                        <div className="leftDetails">
-                            <img src="/static/images/gray-picture-person-with-gray-background.png" alt="" />
-                            <div className="workerInfo">
-                                <h5 className='workerName'>{worker.name}</h5>
-                                <p>{formatSlug(slug)} - {worker.experience} years experience</p>
-                                <p className='rating'>⭐ {worker.rating} <span>({worker.reviews} reviews)</span></p>
-                                <p>📍 {worker.location}</p>
+            {workers?.map((worker) => {
+                const currentSkill = worker.workerInfo?.skills?.find(
+                    (skill) => skill.slug === slug
+                );
+                return (
+                    <div key={worker._id} className="workersList">
+                        <div className="workerDetails">
+                            <div className="leftDetails">
+                                <img src="/static/images/gray-picture-person-with-gray-background.png" alt="" />
+                                <div className="workerInfo">
+                                    <h5 className='workerName'>{worker.name}</h5>
+                                    <p>{formatSlug(slug)} - {currentSkill?.experience ?? 0} years experience</p>
+                                    <p className='rating'>⭐ {worker.workerInfo.rating} <span>({worker.workerInfo.reviews?.length} reviews)</span></p>
+                                    <p>📍 {worker.addresses[0].street}, {worker.addresses[0].city}, {worker.addresses[0].state}, {worker.addresses[0].zipcode}</p>
+                                </div>
                             </div>
-                        </div>
-                        <div className="rightDetails">
-                            <div className="buttons">
-                                <Link to={`/worker/${worker.id}`} className='primaryBtn'>View Details</Link>
-                                <Link to={`/book/${worker.id}`} className='secondaryBtn'>Book Now</Link>
+                            <div className="rightDetails">
+                                <div className="buttons">
+                                    <Link to={`/worker/${worker._id}`} className='primaryBtn'>View Details</Link>
+                                    <Link to={`/book/${worker._id}`} className='secondaryBtn'>Book Now</Link>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            ))}
+                )
+            }
+            )}
         </section>
     )
 }

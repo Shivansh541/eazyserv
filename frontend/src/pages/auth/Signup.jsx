@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./css/Signup.css";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 const SERVICES = [
   "Plumber",
   "Electrician",
@@ -12,6 +13,9 @@ const SERVICES = [
 ];
 
 const Signup = () => {
+
+  const { list: services } = useSelector(state => state.services)
+
   const [role, setRole] = useState("customer")
   const [step, setStep] = useState(1)
   const [formData, setFormData] = useState({
@@ -34,14 +38,14 @@ const Signup = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const validateStep1 = () => {
-    // if (!formData.name.trim()) return "Name is required";
-    // if (!formData.email.trim()) return "Email is required";
-    // if (!formData.phone.trim()) return "Phone is required";
-    // if (!formData.gender) return "Gender is required";
-    // if (!formData.dob) return "Date of birth is required";
-    // if (!formData.password) return "Password is required";
-    // if (formData.password.length < 6)
-    //   return "Password must be at least 6 characters";
+    if (!formData.name.trim()) return "Name is required";
+    if (!formData.email.trim()) return "Email is required";
+    if (!formData.phone.trim()) return "Phone is required";
+    if (!formData.gender) return "Gender is required";
+    if (!formData.dob) return "Date of birth is required";
+    if (!formData.password) return "Password is required";
+    if (formData.password.length < 6)
+      return "Password must be at least 6 characters";
     if (formData.password !== formData.confirmPassword)
       return "Passwords do not match";
 
@@ -58,23 +62,31 @@ const Signup = () => {
     setStep(2);
   };
 
-  const toggleSkill = (skill) => {
+  const toggleSkill = (service) => {
     setFormData((prev) => {
-      const exists = prev.skills.find((s) => s.name === skill);
+      const exists = prev.skills.find((s) => s.slug === service.slug);
 
       if (exists) {
         return {
           ...prev,
-          skills: prev.skills.filter((s) => s.name !== skill),
+          skills: prev.skills.filter((s) => s.slug !== service.slug),
         };
       } else {
         return {
           ...prev,
-          skills: [...prev.skills, { name: skill, experience: "" }],
+          skills: [
+            ...prev.skills,
+            {
+              name: service.name,
+              slug: service.slug,
+              experience: "",
+            },
+          ],
         };
       }
     });
   };
+
   const handleAddressChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -268,20 +280,20 @@ const Signup = () => {
               <p>Select Services & Experience</p>
 
               <div className="skillsGrid">
-                {SERVICES.map((service) => {
+                {services.map((service) => {
                   const selectedSkill = formData.skills.find(
-                    (s) => s.name === service
+                    (s) => s.slug === service.slug
                   );
 
                   return (
-                    <div key={service} className="skillItem">
+                    <div key={service._id} className="skillItem">
                       <label>
                         <input
                           type="checkbox"
                           checked={!!selectedSkill}
                           onChange={() => toggleSkill(service)}
                         />
-                        {service}
+                        {service.name}
                       </label>
 
                       {selectedSkill && (
@@ -294,12 +306,13 @@ const Signup = () => {
                             setFormData((prev) => ({
                               ...prev,
                               skills: prev.skills.map((s) =>
-                                s.name === service
+                                s.slug === service.slug
                                   ? { ...s, experience: value }
                                   : s
                               ),
                             }));
                           }}
+
                           required
                         />
                       )}
