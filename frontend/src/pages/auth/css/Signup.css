@@ -21,7 +21,7 @@
   margin-bottom: 0.3rem;
 }
 
-.signupCard p {
+.signupCard>p {
   text-align: center;
   color: #6b7280;
   margin-bottom: 1.5rem;
@@ -32,7 +32,7 @@
   color: #374151;
 }
 
-.signupCard input,
+.signupCard input:not([type = "checkbox"]),
 .signupCard select {
   width: 100%;
   padding: 12px;
@@ -87,3 +87,161 @@
   font-weight: 500;
 }
 
+.toggleRole{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  text-align: center;
+  color: #2563eb;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.skillsSection {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.skillsSection p {
+  font-size: 14px;
+  font-weight: 500;
+  color: #111827;
+}
+
+/* Grid layout */
+.skillsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+/* Skill card */
+.skillItem {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #ffffff;
+  transition: all 0.2s ease;
+}
+
+/* Hover */
+.skillItem:hover {
+  border-color: #2563eb;
+  background: #f8fafc;
+}
+
+/* Checkbox row */
+.skillItem label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #374151;
+}
+
+/* Checkbox */
+.skillItem input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #2563eb;
+  cursor: pointer;
+}
+
+/* Experience input */
+.skillItem input[type="text"] {
+  width: 100%;
+  padding: 6px 8px;
+  font-size: 13px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  outline: none;
+  margin-bottom: 0;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Focus state */
+.skillItem input[type="text"]:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+
+/* Selected skill highlight */
+.skillItem:has(input[type="checkbox"]:checked) {
+  border-color: #2563eb;
+  background: #eff6ff;
+}
+
+.skillItem:has(input[type="checkbox"]:checked) label {
+  color: #1d4ed8;
+  font-weight: 500;
+}
+
+
+/* Step Indicator */
+.stepIndicator {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.step span {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #d1d5db;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: #9ca3af;
+  background: white;
+}
+
+.step p {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* Active Step */
+.step.active span {
+  border-color: #2563eb;
+  background: #2563eb;
+  color: white;
+}
+
+.step.active p {
+  color: #2563eb;
+  font-weight: 500;
+}
+
+/* Line between steps */
+.stepLine {
+  width: 60px;
+  height: 2px;
+  background: #d1d5db;
+}
+
+.step.active + .stepLine {
+  background: #2563eb;
+}

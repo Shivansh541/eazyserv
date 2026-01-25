@@ -22,7 +22,6 @@ const navbarLinks = {
 
     worker: [
         { path: '/', label: 'Home' },
-        { path: '/services', label: 'Services' },
         { path: '/myjobs', label: 'My Jobs' },
         { path: '/notifications', label: 'Notifications' }
     ]

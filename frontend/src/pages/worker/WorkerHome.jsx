@@ -1,13 +1,45 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import "./css/WorkerHome.css";
+const jobsData = [
+  {
+    id: "BK10234",
+    customerName: "Rahul Sharma",
+    customerPhoto: "/static/images/gray-picture-person-with-gray-background.png",
+    service: "Plumbing",
+    date: "12 Jan 2026",
+    time: "10:30 AM",
+    address: "Indore, MP",
+    status: "In Progress"
+  },
+  {
+    id: "BK10235",
+    customerName: "Rajat Sharma",
+    customerPhoto: "/static/images/gray-picture-person-with-gray-background.png",
+    service: "Plumbing",
+    date: "13 Jan 2026",
+    time: "10:30 AM",
+    address: "Indore, MP",
+    status: "Completed"
+  },
+  {
+    id: "BK10236",
+    customerName: "Vijay Sharma",
+    customerPhoto: "/static/images/gray-picture-person-with-gray-background.png",
+    service: "Plumbing",
+    date: "14 Jan 2026",
+    time: "10:30 AM",
+    address: "Indore, MP",
+    status: "Cancelled"
+  }
+];
+
 
 const WorkerHome = () => {
   const user = useSelector((state) => state.auth.user);
 
   return (
-    <div className="home workerHome">
+    <div className="home workerHome customerHome">
 
       {/* HERO SECTION */}
       <section className="homeHero">
@@ -33,71 +65,51 @@ const WorkerHome = () => {
       </section>
 
       {/* RECENT JOBS */}
-      <section className="recentBookings">
+      <section className="recentBookings recentJobs">
         <h2>Recent Jobs</h2>
 
-        <div className="bookingItems">
+        <div className="bookingsList">
+          {jobsData.length === 0 ? (
+            <div className="emptyState">
+              <h3>No jobs yet</h3>
+              <p>You haven’t completed any jobs yet.</p>
+            </div>
+          ) : (
+            jobsData.map((job) => (
+              <div className="bookingCard" key={job.id}>
 
-          <div className="bookingItem">
-            <div className="bookingInfo">
-              <span className="icon">🔌</span>
-              <div>
-                <h3>Client: Amit Patel</h3>
-                <p>AC Installation • 14 Nov 2025 (10:00–12:00)</p>
+                {/* LEFT */}
+                <div className="bookingLeft">
+                  <img
+                    src={job.customerPhoto}
+                    alt={job.customerName}
+                    className="profileAvatar"
+                  />
+                  <div className="serviceType">
+                    <h3>{job.customerName}</h3>
+                    <p className="booking-id">Booking ID: {job.id}</p>
+                    <p className="serviceLabel">{job.service}</p>
+                  </div>
+                </div>
+
+                {/* MIDDLE */}
+                <div className="bookingMiddle">
+                  <p>📅 {job.date} • {job.time}</p>
+                  <p>📍 {job.address}</p>
+                </div>
+
+                {/* RIGHT */}
+                <div className="bookingRight">
+                  <span className={`statusBadge ${job.status.toLowerCase()}`}>
+                    {job.status}
+                  </span>
+                </div>
+
               </div>
-            </div>
-            <div className="statusBox">
-              <span className="status completed">✅ Completed</span>
-              <Link to="/myjobs/1" className="linkBtn">
-                View Details
-              </Link>
-            </div>
-          </div>
-
-          <div className="bookingItem">
-            <div className="bookingInfo">
-              <span className="icon">🧹</span>
-              <div>
-                <h3>Client: Rohit Sharma</h3>
-                <p>Cleaning • 15 Nov 2025 (01:00–03:00)</p>
-              </div>
-            </div>
-            <div className="statusBox">
-              <span className="status ongoing">🔄 Ongoing</span>
-              <Link to="/myjobs/2" className="linkBtn">
-                View Details
-              </Link>
-            </div>
-          </div>
-
-          <div className="bookingItem">
-            <div className="bookingInfo">
-              <span className="icon">🛠️</span>
-              <div>
-                <h3>Client: Neha Singh</h3>
-                <p>Plumbing • 16 Nov 2025 (09:00–11:00)</p>
-              </div>
-            </div>
-            <div className="statusBox">
-              <span className="status cancelled">❌ Cancelled</span>
-              <Link to="/myjobs/3" className="linkBtn">
-                View Details
-              </Link>
-            </div>
-          </div>
-
+            ))
+          )}
         </div>
-
-        <a
-          href="/worker/bookings"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="viewAllLink"
-        >
-          View All Bookings →
-        </a>
       </section>
-
     </div>
   );
 };

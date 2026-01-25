@@ -10,20 +10,20 @@ const nodemailer = require("nodemailer")
 const JWT_SECRET = process.env.JWT_SECRET;
 
 const sendEmail = async (to, subject, text) => {
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
-    },
-  });
+    const transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS,
+        },
+    });
 
-  await transporter.sendMail({
-    from: `"HomeHelp" <${process.env.EMAIL_USER}>`,
-    to,
-    subject,
-    text,
-  });
+    await transporter.sendMail({
+        from: `"HomeHelp" <${process.env.EMAIL_USER}>`,
+        to,
+        subject,
+        text,
+    });
 };
 
 
@@ -59,7 +59,7 @@ router.post(
             return res.status(400).json({ errors: errors.array() });
         }
         try {
-            const { name, email, password, phone, gender, dob, role } = req.body;
+            const { name, email, password, phone, gender, dob, role, addresses, workerInfo } = req.body;
             let user = await User.findOne({ email });
             if (user) {
                 return res
@@ -76,6 +76,8 @@ router.post(
                 gender,
                 role,
                 dob,
+                addresses,
+                workerInfo
             });
             data = {
                 user: {
@@ -149,6 +151,21 @@ router.post('/getuser', fetchuser, async (req, res) => {
     }
 })
 
+router.post('/workers/by-service', async (req, res) => {
+    try {
+        const { service } = req.body;
+
+        const workers = await User.find({
+            role: 'worker',
+            "workerInfo.skills": service
+        }).select('-password');
+
+        res.json(workers);
+    } catch (error) {
+        res.status(500).send("Internal Server Error");
+    }
+});
+
 router.post("/forgot-password",
     [
         body("email").isEmail()
@@ -187,59 +204,59 @@ router.post("/forgot-password",
 );
 
 router.post(
-  "/verify-otp",
-  [
-    body("email").isEmail(),
-    body("otp").isLength({ min: 6, max: 6 }),
-  ],
-  async (req, res) => {
-    const { email, otp } = req.body;
+    "/verify-otp",
+    [
+        body("email").isEmail(),
+        body("otp").isLength({ min: 6, max: 6 }),
+    ],
+    async (req, res) => {
+        const { email, otp } = req.body;
 
-    try {
-      const record = await Otp.findOne({ email, otp });
+        try {
+            const record = await Otp.findOne({ email, otp });
 
-      if (!record || record.expiresAt < Date.now()) {
-        return res.status(400).json({ error: "Invalid or expired OTP" });
-      }
+            if (!record || record.expiresAt < Date.now()) {
+                return res.status(400).json({ error: "Invalid or expired OTP" });
+            }
 
-      res.json({ success: true });
-    } catch (err) {
-      console.error(err);
-      res.status(500).send("Server Error");
+            res.json({ success: true });
+        } catch (err) {
+            console.error(err);
+            res.status(500).send("Server Error");
+        }
     }
-  }
 );
 router.post(
-  "/reset-password",
-  [
-    body("email").isEmail(),
-    body("password").isLength({ min: 8 }),
-  ],
-  async (req, res) => {
-    const { email, password } = req.body;
+    "/reset-password",
+    [
+        body("email").isEmail(),
+        body("password").isLength({ min: 8 }),
+    ],
+    async (req, res) => {
+        const { email, password } = req.body;
 
-    try {
-      const otpRecord = await Otp.findOne({ email });
-      if (!otpRecord || otpRecord.expiresAt < Date.now()) {
-        return res.status(400).json({ error: "OTP expired or invalid" });
-      }
+        try {
+            const otpRecord = await Otp.findOne({ email });
+            if (!otpRecord || otpRecord.expiresAt < Date.now()) {
+                return res.status(400).json({ error: "OTP expired or invalid" });
+            }
 
-      const salt = await bcrypt.genSalt(10);
-      const hashedPassword = await bcrypt.hash(password, salt);
+            const salt = await bcrypt.genSalt(10);
+            const hashedPassword = await bcrypt.hash(password, salt);
 
-      await User.updateOne(
-        { email },
-        { password: hashedPassword }
-      );
+            await User.updateOne(
+                { email },
+                { password: hashedPassword }
+            );
 
-      await Otp.deleteMany({ email });
+            await Otp.deleteMany({ email });
 
-      res.json({ success: true });
-    } catch (err) {
-      console.error(err);
-      res.status(500).send("Server Error");
+            res.json({ success: true });
+        } catch (err) {
+            console.error(err);
+            res.status(500).send("Server Error");
+        }
     }
-  }
 );
 
 

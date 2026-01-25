@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import './css/Workers.css'
+import { useSelector } from 'react-redux';
 const workersData = [
     {
         id: 1,
@@ -94,7 +95,6 @@ const workersData = [
     },
 ];
 const Workers = () => {
-
     const { slug } = useParams();
 
     const formatSlug = (slug) => {

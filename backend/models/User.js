@@ -26,13 +26,15 @@ const UserSchema = new Schema({
   DOB: {
     type: Date,
   },
-  address: {
-    landmark: String,
-    street: String,
-    city: String,
-    state: String,
-    pincode: String
-  },
+  addresses: [
+    {
+      _id: false,
+      street: String,
+      city: String,
+      state: String,
+      zipcode: String
+    }
+  ],
   profilePhoto: {
     type: String,
   },
@@ -41,17 +43,14 @@ const UserSchema = new Schema({
     enum: ["worker", "customer", "admin"],
     required: true,
   },
-  isProfileCompleted:{
-    type: Boolean,
-    default: false
-  },
   workerInfo: {
-    skills: {
-      type: [String],
-    },
-    experience: {
-      type: Number,
-    },
+    skills: [
+      {
+        _id: false,
+        name: String,
+        experience: String
+      }
+    ],
     availability: {
       type: Boolean,
       default: true,
